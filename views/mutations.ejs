@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - <%= APP_NAME %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="app-header"><%= APP_NAME %></header>
+    <div class="container">
+        <h1 class="page-title" style="color: var(--error-color);">🚫 Terjadi Kesalahan</h1>
+        <p class="error-message"><%= message %></p>
+        <div class="actions-group">
+            <a href="/" class="button-link secondary">Kembali ke Halaman Utama</a>
+        </div>
+    </div>
+    <footer>
+        <p>© <%= new Date().getFullYear() %> <%= APP_NAME %>.</p>
+    </footer>
+</body>
+</html>

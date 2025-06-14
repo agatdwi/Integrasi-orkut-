@@ -1,0 +1,252 @@
+/* public/css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #00a8ff; 
+    --secondary-color: #9c27b0; 
+    --accent-color: #e91e63; 
+    --background-dark: #12121c; 
+    --surface-dark: #1a1a2e; 
+    --text-light: #e0e0e0;
+    --text-dark: #333;
+    --success-color: #4CAF50;
+    --error-color: #f44336;
+    --border-radius: 8px;
+    --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --glow-shadow: 0 0 15px var(--primary-color), 0 0 20px var(--primary-color_alpha_low);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--background-dark) 0%, #0d0d1f 100%);
+    color: var(--text-light);
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.app-header {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color), 0 0 10px rgba(0, 168, 255, 0.5);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.container {
+    background-color: var(--surface-dark);
+    padding: 30px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow), 0 0 25px rgba(0, 168, 255, 0.1);
+    width: 100%;
+    max-width: 550px;
+    border: 1px solid rgba(0, 168, 255, 0.2);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1.page-title {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 400;
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 168, 255, 0.3);
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(0, 168, 255, 0.5);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+button, .button-link {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 100%;
+    margin-top: 10px;
+}
+button:hover, .button-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3), 0 0 15px var(--primary-color);
+}
+.button-link.secondary {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    margin-top: 15px;
+}
+.button-link.secondary:hover {
+    background: var(--primary-color);
+    color: var(--surface-dark);
+}
+
+.error-message, .success-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    text-align: center;
+}
+.error-message {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+.success-message {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.qr-container {
+    text-align: center;
+    margin: 25px 0;
+    padding: 20px;
+    background-color: var(--background-dark);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 168, 255, 0.2);
+}
+.qr-container img {
+    max-width: 100%;
+    height: auto;
+    width: 300px; /* Adjust as needed */
+    border-radius: 4px;
+    background: #fff; /* QR codes often expect white background if not transparent */
+    padding: 10px; /* Padding around QR if background is shown */
+}
+
+.transaction-details {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.transaction-details li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.transaction-details li:last-child {
+    border-bottom: none;
+}
+.transaction-details strong {
+    color: var(--primary-color);
+}
+
+.qr-string-display {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+    border: 1px solid rgba(0, 168, 255, 0.3);
+    border-radius: var(--border-radius);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8em;
+    word-break: break-all;
+}
+
+pre.mutation-data {
+    background-color: rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95em;
+    border: 1px solid rgba(0, 168, 255, 0.2);
+    max-height: 400px;
+    overflow-y: auto;
+    color: #c5c8c6; /* Lighter grey for pre text */
+}
+
+.actions-group {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.actions-group .button-link, .actions-group button {
+    margin-top: 0; 
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.5);
+}
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .app-header {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h1.page-title {
+        font-size: 1.6em;
+    }
+    button, .button-link {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}

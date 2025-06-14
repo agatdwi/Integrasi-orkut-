@@ -1,0 +1,133 @@
+<<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Donasi - <%= APP_NAME %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Anda bisa tambahkan Favicon di sini -->
+    <!-- <link rel="icon" href="/images/favicon.ico" type="image/x-icon"> -->
+</head>
+<body>
+    <header class="app-header"><%= APP_NAME %></header>
+
+    <div class="container">
+        <h1 class="page-title">Berikan Donasi Anda</h1>
+
+        <%# Blok untuk menampilkan pesan error atau sukses %>
+        <% 
+        let errorMessages = [];
+        let successMessages = [];
+
+        if (typeof error_msg !== 'undefined' && error_msg) {
+            if (Array.isArray(error_msg)) {
+                errorMessages = error_msg;
+            } else {
+                errorMessages.push(error_msg);
+            }
+        }
+        if (typeof success_msg !== 'undefined' && success_msg) {
+            if (Array.isArray(success_msg)) {
+                successMessages = success_msg;
+            } else {
+                successMessages.push(success_msg);
+            }
+        }
+        %>
+
+        <% if (errorMessages.length > 0) { %>
+            <% errorMessages.forEach(function(message) { %>
+                <p class="error-message"><%= message %></p>
+            <% }); %>
+        <% } %>
+
+        <% if (successMessages.length > 0) { %>
+            <% successMessages.forEach(function(message) { %>
+                <p class="success-message"><%= message %></p>
+            <% }); %>
+        <% } %>
+        
+        <form action="/donate" method="POST" id="donationForm">
+            <div>
+                <label for="name">Nama (Opsional):</label>
+                <input type="text" id="name" name="name" placeholder="Nama Anda atau Anonim">
+            </div>
+            <div>
+                <label for="amount">Jumlah Donasi (IDR):</label>
+                <input type="number" id="amount" name="amount" min="1000" step="1000" placeholder="Min. 1,000" required>
+                <div class="quick-amounts">
+                    <button type="button" class="quick-amount-btn" data-amount="10000">10rb</button>
+                    <button type="button" class="quick-amount-btn" data-amount="25000">25rb</button>
+                    <button type="button" class="quick-amount-btn" data-amount="50000">50rb</button>
+                    <button type="button" class="quick-amount-btn" data-amount="100000">100rb</button>
+                </div>
+            </div>
+            <div>
+                <label for="message">Pesan (Opsional):</label>
+                <textarea id="message" name="message" rows="3" placeholder="Tuliskan doa atau pesan Anda di sini..."></textarea>
+            </div>
+            <button type="submit" id="submitButton">Lanjutkan Donasi</button>
+        </form>
+
+        <div class="actions-group">
+            <a href="/mutations" class="button-link secondary">Lihat Mutasi Terakhir</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© <%= new Date().getFullYear() %> <%= APP_NAME %>. Dibuat dengan cinta untuk kebaikan.</p>
+    </footer>
+
+    <script>
+        // Script untuk tombol cepat isi nominal
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInput = document.getElementById('amount');
+            const quickAmountButtons = document.querySelectorAll('.quick-amount-btn');
+            
+            quickAmountButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    amountInput.value = this.dataset.amount;
+                });
+            });
+
+            // Opsional: Disable tombol submit saat form disubmit untuk mencegah double click
+            const donationForm = document.getElementById('donationForm');
+            const submitButton = document.getElementById('submitButton');
+            if (donationForm && submitButton) {
+                donationForm.addEventListener('submit', function() {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Memproses...'; 
+                });
+            }
+        });
+    </script>
+    <style>
+        /* CSS tambahan untuk tombol cepat (bisa dipindah ke style.css utama) */
+        .quick-amounts {
+            display: flex;
+            gap: 5px; /* Jarak antar tombol */
+            margin-top: 5px;
+            margin-bottom: 15px; /* Jarak sebelum field berikutnya */
+            flex-wrap: wrap; /* Agar tombol wrap jika tidak muat */
+        }
+        .quick-amount-btn {
+            flex-grow: 1; /* Agar tombol mengisi ruang yang tersedia */
+            padding: 8px 10px;
+            font-size: 0.9em;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .quick-amount-btn:hover {
+            background-color: rgba(0, 168, 255, 0.2);
+            transform: translateY(-1px);
+        }
+        .quick-amount-btn:active {
+            transform: translateY(0px);
+        }
+    </style>
+</body>
+</html>
