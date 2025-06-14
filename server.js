@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 
 const requiredSettingsKeys = ['ORKUT_QRIS_STATIC_CODE', 'OKECONNECT_MERCHANT_ID', 'OKECONNECT_API_KEY'];
 for (const key of requiredSettingsKeys) {
-    if (!settings[key] || settings[key].startsWith("583408417498686151016700OKCT23C37B0C7EC236263B1220B53B65D8F5")) {
+    if (!settings[key] || settings[key].startsWith("ISI_DENGAN_")) {
         console.error(`FATAL: Pengaturan "${key}" di settings.js belum diisi.`);
         process.exit(1);
     }
