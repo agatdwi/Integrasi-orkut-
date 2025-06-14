@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proses Donasi - <%= APP_NAME %></title>
+    <title>Proses order - <%= APP_NAME %></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header class="app-header"><%= APP_NAME %></header>
     <div class="container">
-        <h1 class="page-title">Selesaikan Donasi Anda</h1>
+        <h1 class="page-title">Selesaikan Orderan Anda</h1>
         <p style="text-align:center;">Terima kasih, <strong><%= donation.name_display %></strong>!</p>
         <p style="text-align:center;">Pindai QRIS di bawah untuk donasi sebesar <br><strong>IDR <%= new Intl.NumberFormat('id-ID').format(donation.amountToPayWithFee) %></strong>
             <% if (donation.feeAmount > 0) { %>
