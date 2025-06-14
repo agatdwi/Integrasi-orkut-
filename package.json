@@ -1,8 +1,8 @@
 {
-  "name": "wfc-donasi",
+  "name": "order",
   "version": "1.0.0",
-  "description": "Web Donasi WFC menggunakan QRIS Orkut",
-  "main": "server.js",
+  "description": "Web Order menggunakan QRIS Orkut",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
